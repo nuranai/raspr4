@@ -64,6 +64,11 @@ int main()
 		threadArr[i].join();
 	}
 
+	int total = 0;
+	for (auto pair : mainMap) {
+		total += pair.second;
+	}
+
 	cout << "write commands, type h for list of commands:" << endl;
 	bool flag = true;
 	while (flag) {
@@ -86,7 +91,7 @@ int main()
 			cout << "enter character: ";
 			char toFind;
 			cin >> toFind;
-			cout << endl << toFind << " - " << mainMap[toFind] << endl;
+			cout << endl << "probability:: " << toFind << " = " << double(mainMap[toFind]) / total << endl;
 			break;
 		case 'f':
 			sort(mainMap, [](vector<pair<char, int>>&vector) {
@@ -97,7 +102,6 @@ int main()
 			break;
 		case 'r':
 			sort(mainMap, [](vector<pair<char, int>>& vector) {
-				cout << vector.size() << ' ' << vector.size() - 4 << endl;
 				for (int i = vector.size() - 4; i < vector.size(); i++) {
 					cout << vector[i].first << " - " << vector[i].second << endl;
 				}
